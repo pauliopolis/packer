@@ -1,2 +1,2 @@
 # packer
-Packer stuff
+Packer Installation Script & Templates
