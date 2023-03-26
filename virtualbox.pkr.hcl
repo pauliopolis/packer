@@ -19,7 +19,7 @@ source "virtualbox-iso" "rhel8" {
   http_port_min    = 8336
   guest_os_type    = "RedHat_64"
   iso_url          = "D:\\ISOs\\packer-rhel-8.6-x86_64-dvd.iso"
-  iso_checksum     = "md5:94ba3279f18dd249c2211db1a102bf2c"
+  iso_checksum     = "md5:61143a452ca5c34e044ce9c4f3902961"
   ssh_username     = "packer"
   ssh_password     = "packer"
   ssh_port         = 22
