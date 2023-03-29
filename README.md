@@ -7,7 +7,7 @@ There are many builder plugins - this project will look only at virtualbox and v
 * virtualbox [see](https://developer.hashicorp.com/packer/plugins/builders/virtualbox)
 * vmware [see](https://developer.hashicorp.com/packer/plugins/builders/vmware)
 
-* This project will use templates written in hcl2 format (not json)
+* This project uses templates written in hcl2 format
 
 # Environment
 * Windows 10 Home Edition 
@@ -20,58 +20,19 @@ There are many builder plugins - this project will look only at virtualbox and v
 * VMware Workstation 16 Player [16.2.5](https://docs.vmware.com/en/VMware-Workstation-Player-for-Windows/16.0/com.vmware.player.win.using.doc/GUID-B8509247-258C-4B11-8637-5DABACEA4965.html)
 * Oracle VM VirtualBox Manager [7.0.6](https://www.virtualbox.org/manual/ch01.html#intro-installing)
 
-# VirtualBox Builder
-
-* virtualbox-iso (new VM)
-
-* virtualbox-ovf (existing OVF/OVA)
-
-* virtualbox-vm (existing VM)
-
-# VMware Builder
-
-* vmware-iso (new VM)
-
-* vmware-vmx (existing VM)
 
 # Project 
 
-## List Plugins
-Packer installation does not include any plugins yet
-``$packer plugins installed``
+``cd packer``
 
-## Install Required Plugin
-Add this code to virtualbox.pkr.hcl
+``$packer validate templates/rhel8/gold.pkr.hcl``
 
-![image](https://user-images.githubusercontent.com/14337141/226880863-9bd39a7e-67f0-4636-bfff-276e13a6d317.png)
+``$packer fmt templates/rhel8/gold.pkr.hcl``
 
-## Initialise Project
+``$update-gold-md5``  (Get the ISO md5)
+ 
+``$packer build templates/rhel8/gold.pkr.hcl``
 
-``$packer init .`` or ``$packer init virtualbox.pkr.hcl``
-
-``$packer plugins installed``
-
-## Alternatively
-Install/remove the plugin manually :
-
-``$packer plugins install github.com/hashicorp/virtualbox``
-
-``$packer plugins remove github.com/hashicorp/virtualbox``
-
-## validate and format the file
-
-``$packer validate virtualbox.pkr.hcl``
-
-``$packer fmt virtualbox.pkr.hcl``
-
-## Add the minimum basics 
-![image](https://user-images.githubusercontent.com/14337141/226903737-7171fa6c-f532-486c-8ac6-81d13352a2ab.png)
-
-## Build the image
-
-``$packer build .`` or ``$packer build virtualbox.pkr.hcl``
-
-At this stage you will note a virtualbox VM installation window but we need to add more information to the hcl for this to succeed
-boot information and a kickstart for example
+``$revert-md5-placeholder``  (Remove the ISO md5)
 
 
