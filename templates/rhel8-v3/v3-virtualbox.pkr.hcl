@@ -19,15 +19,11 @@ variable "headless" {
 }
 
 variable "iso_url" {
-    default = "D:\\ISOs\\v2-packer-rhel-8.6-x86_64-dvd.iso"
+    default = "D:\\ISOs\\v3-rhel-8.6-x86_64-dvd.iso"
 }
 
 variable "iso_checksum" {
-    default = "md5:124f314362ce89775416cc4dba2dd8c4"
-}
-
-variable "kickstart_file" {
-    default = "ks.cfg"
+    default = "md5:b8f63dc3b244897011f27bd71e1bf705"
 }
 
 variable "memory" {
@@ -43,7 +39,7 @@ variable "username" {
 }
 
 variable "vm_name" {
-    default = "rhel8"
+    default = "rhel8-v3"
 }
 
 variable "provider_name" {
