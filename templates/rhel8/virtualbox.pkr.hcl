@@ -23,7 +23,7 @@ variable "iso_url" {
 }
 
 variable "iso_checksum" {
-    default = "md5:124f314362ce89775416cc4dba2dd8c4"
+    default = "md5:CHECKSUM"
 }
 
 variable "kickstart_file" {
@@ -51,7 +51,11 @@ variable "provider_name" {
 }
 
 variable "ssh_timeout" {
-    default = "45m"
+    default = "30m"
+}
+
+variable "ssh_port" {
+    default = "22"
 }
 
 variable "hard_drive_interface" {
@@ -89,9 +93,15 @@ source "virtualbox-iso" "rhel8" {
     output_directory     = "${var.build_directory}/${var.template}-${var.provider_name}-${var.vm_name}"
     shutdown_command     = "echo '${var.username}' | sudo -S shutdown -P now"
     ssh_timeout          = var.ssh_timeout
+    ssh_port             = var.ssh_port
     ssh_username         = var.username
     ssh_password         = var.username
     vm_name              = var.vm_name
+    vboxmanage           = [
+                             ["modifyvm", "{{ .Name }}", "--spec-ctrl", "on"],
+                             ["modifyvm", "{{ .Name }}", "--vram", "256"],
+                             ["modifyvm", "{{ .Name }}", "--graphicscontroller", "vmsvga"]
+                           ]
 }
 
 build {
