@@ -3,7 +3,7 @@ variable "build_directory" {
 }
 
 variable "boot_wait" {
-    default = "1s"
+    default = "5s"
 }
 
 variable "cpus" {
@@ -95,7 +95,7 @@ source "virtualbox-iso" "rhel8" {
     ssh_timeout          = var.ssh_timeout
     ssh_port             = var.ssh_port
     ssh_username         = var.username
-    ssh_password         = var.username
+    ssh_password         = "packer"
     vm_name              = var.vm_name
     vboxmanage           = [
                              ["modifyvm", "{{ .Name }}", "--spec-ctrl", "on"],
