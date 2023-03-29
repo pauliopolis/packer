@@ -38,7 +38,8 @@ There are many builder plugins - this project will look only at virtualbox and v
 
 # Usage
 
-Running packer build will create a build folder containing both an OVF and a VMDK and also output a Vagrant BOX file
+Running packer build will create a build folder containing both an OVF and a VMDK and also output a Vagrant BOX file.
+
 Right click and Open-With either Virtualbox or VMware Workstation Player to import the OVF and create new VMs 
 
 
