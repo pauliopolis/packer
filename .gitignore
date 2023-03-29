@@ -2,3 +2,4 @@ packer_cache
 output-rhel8
 build
 *.box
+.README.md.swp
