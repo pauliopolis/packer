@@ -1,5 +1,5 @@
 variable "build_directory" {
-  default = "./build"
+  default = "D:\\Virtual Machines"
 }
 
 variable "boot_wait" {
@@ -15,7 +15,7 @@ variable "disk_size" {
 }
 
 variable "headless" {
-  default = false
+  default = true
 }
 
 variable "iso_url" {
