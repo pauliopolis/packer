@@ -1,5 +1,5 @@
 variable "build_directory" {
-  default = "D:\\Virtual Machines"
+  default = "D:\\Virtual_Machines\\GOLD"
 }
 
 variable "boot_wait" {
@@ -19,15 +19,15 @@ variable "headless" {
 }
 
 variable "iso_url" {
-  default = "D:\\ISOs\\gold-rhel-8.6-x86_64-dvd.iso"
+  default = "D:\\ISOs\\gold\\gold-rhel-8.6-x86_64-dvd.iso"
+}
+
+variable "guest_additions_path" {
+  default = "/home/vagrant/VBoxGuestAdditions.iso"
 }
 
 variable "iso_checksum" {
   default = "md5:CHECKSUM"
-}
-
-variable "kickstart_file" {
-  default = "ks.cfg"
 }
 
 variable "memory" {
@@ -106,8 +106,13 @@ source "virtualbox-iso" "rhel8" {
 
 build {
   sources = ["sources.virtualbox-iso.rhel8"]
+ 
+  provisioner "ansible-local" {
+    playbook_file = "./ansible/guest_additions.yml"
+  }
 
   post-processor "vagrant" {
     keep_input_artifact = true
+    output = "D:\\Virtual_Machines\\GOLD"
   }
 }
