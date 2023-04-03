@@ -27,7 +27,7 @@ variable "guest_additions_path" {
 }
 
 variable "iso_checksum" {
-  default = "md5:CHECKSUM"
+  default = "md5:"
 }
 
 variable "memory" {
@@ -100,7 +100,8 @@ source "virtualbox-iso" "rhel8" {
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--spec-ctrl", "on"],
     ["modifyvm", "{{ .Name }}", "--vram", "256"],
-    ["modifyvm", "{{ .Name }}", "--graphicscontroller", "vmsvga"]
+    ["modifyvm", "{{ .Name }}", "--graphicscontroller", "vmsvga"],
+    ["modifyvm", "{{ .Name }}", "--description", "PACKER GOLD RHEL BUILD"]
   ]
 }
 
