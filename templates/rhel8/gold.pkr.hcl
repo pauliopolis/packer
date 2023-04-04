@@ -27,7 +27,7 @@ variable "guest_additions_path" {
 }
 
 variable "iso_checksum" {
-  default = "md5:"
+  default = "md5:ac28835e4a6e432e72e54e7a0017d729"
 }
 
 variable "memory" {
@@ -107,13 +107,24 @@ source "virtualbox-iso" "rhel8" {
 
 build {
   sources = ["sources.virtualbox-iso.rhel8"]
- 
+
   provisioner "ansible-local" {
-    playbook_file = "./ansible/guest_additions.yml"
+    playbook_file = "./ansible/main.yml"
+    galaxy_file   = "./ansible/requirements.yml"
+    role_paths = [
+      "./ansible/roles/vbguest"
+    ]
   }
+
+  provisioner "shell" {
+    inline = [
+      "sudo systemctl enable vboxadd-service.service",
+      "sudo systemctl enable vboxadd.service"
+    ]
+}
 
   post-processor "vagrant" {
     keep_input_artifact = true
-    output = "D:\\Virtual_Machines\\GOLD"
+    output              = "D:\\Virtual_Machines\\GOLD\\gold-virtualbox-rhel8.box"
   }
 }
