@@ -6,6 +6,7 @@
   become_user: root
   become_method: sudo
   connection: local
+  gather_facts: true
 
   collections:
     - ansible.posix 

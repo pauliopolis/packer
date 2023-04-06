@@ -22,12 +22,12 @@ variable "iso_url" {
   default = "D:\\ISOs\\gold\\gold-rhel-8.6-x86_64-dvd.iso"
 }
 
-variable "guest_additions_path" {
-  default = "/home/vagrant/VBoxGuestAdditions.iso"
+variable "iso_checksum" {
+  default = "md5:a26b4ac743d5d654960306c41d7993d8"
 }
 
-variable "iso_checksum" {
-  default = "md5:ac28835e4a6e432e72e54e7a0017d729"
+variable "guest_additions_path" {
+  default = "/home/vagrant/VBoxGuestAdditions.iso"
 }
 
 variable "memory" {
@@ -101,13 +101,14 @@ source "virtualbox-iso" "rhel8" {
     ["modifyvm", "{{ .Name }}", "--spec-ctrl", "on"],
     ["modifyvm", "{{ .Name }}", "--vram", "256"],
     ["modifyvm", "{{ .Name }}", "--graphicscontroller", "vmsvga"],
+    ["modifyvm", "{{ .Name }}", "--nictype1", "virtio"],
     ["modifyvm", "{{ .Name }}", "--description", "PACKER GOLD RHEL BUILD"]
   ]
 }
 
 build {
   sources = ["sources.virtualbox-iso.rhel8"]
-
+  
   provisioner "ansible-local" {
     playbook_file = "./ansible/main.yml"
     galaxy_file   = "./ansible/requirements.yml"
@@ -115,13 +116,6 @@ build {
       "./ansible/roles/vbguest"
     ]
   }
-
-  provisioner "shell" {
-    inline = [
-      "sudo systemctl enable vboxadd-service.service",
-      "sudo systemctl enable vboxadd.service"
-    ]
-}
 
   post-processor "vagrant" {
     keep_input_artifact = true
