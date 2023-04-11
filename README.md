@@ -52,14 +52,6 @@ Edit any settings cush as the VM name then select 'Finish' and wait for the 'Imp
 
 ![image](https://user-images.githubusercontent.com/14337141/228615726-56aec4dd-ae45-42c2-821a-cef3e501e923.png)
 
-View from VirtualBox
-
-![image](https://user-images.githubusercontent.com/14337141/228616272-86518ae2-4f01-4ad8-a6a1-413ed84fbf41.png)
-
-View from WSL 
-
-![image](https://user-images.githubusercontent.com/14337141/228616387-aac2c7af-6503-49f4-b95d-1a8813e37b3c.png)
-
 Even though this Packer template has not yet created a vmware image - we can still import the OVF into VMware Workstation Player - you will be prompted to set a name and the location.  When ready hit the 'Import' button and wait.  Unlike VirtualBox these VMs will be created in a powered on state.
 
 ![image](https://user-images.githubusercontent.com/14337141/228617001-51c63aa5-599b-4c9c-89a7-7fcb0169b109.png)
@@ -68,14 +60,15 @@ You may see this prompt - just hit 'Retry' and the image will be imported and VM
 
 ![image](https://user-images.githubusercontent.com/14337141/228617581-e1fc19da-a06f-44c8-b717-053f7550887f.png)
 
-View from VMWare Workstation Player
+# Example
 
-![image](https://user-images.githubusercontent.com/14337141/228619473-d94c482e-ed24-46e3-9652-6ae94dae0fb6.png)
+This is what the packer build process looks like...
 
-View from WSL
+``$packer build templates/rhel8/gold.pkr.hcl``
 
-![image](https://user-images.githubusercontent.com/14337141/228618568-718fb24c-9ab0-4c28-aa72-b6bf5aa4afdf.png)
+![image](https://user-images.githubusercontent.com/14337141/231236276-f6cb830b-9c62-4dbf-a05d-bcabd2271ffd.png)
+![image](https://user-images.githubusercontent.com/14337141/231236476-510a059a-36c6-4ac7-b52a-6b236619f3e7.png)
 
 # Using the BOX with Vagrant 
 
-IN-PROGRESS
+You may now ADD the Vagrant BOX and procede as per Vagrant instructions.
