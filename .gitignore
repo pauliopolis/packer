@@ -3,3 +3,5 @@ output-rhel8
 build
 *.box
 .README.md.swp
+info.json.working
+info.json.git
