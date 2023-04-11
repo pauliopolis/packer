@@ -1,0 +1,7 @@
+{
+  "Description": "RHEL 8.6 minimal build with VBoxAdditions, Ansible Core & ansible.posix.  Creds: 'vagrant: packer'",
+  "Website": "https://pauliopolis.github.io/vagrant",
+  "Author": "Pauliopolis",
+  "Artifacts": "https://vagrantcloud.com/pauliopolis",
+  "Repository": "https://github.com/pauliopolis"
+}
