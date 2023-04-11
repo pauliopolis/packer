@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CUSTOMISO=/mnt/d/ISOs/gold/gold-rhel-8.6-x86_64-dvd.iso.md5
+CUSTOMISO=/mnt/d/ISOs/custom/gold-rhel-8.6-x86_64-dvd.iso.md5
 
 CHECKSUM=$(cat $CUSTOMISO)
 
