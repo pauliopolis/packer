@@ -19,11 +19,11 @@ variable "headless" {
 }
 
 variable "iso_url" {
-  default = "D:\\ISOs\\gold\\gold-rhel-8.6-x86_64-dvd.iso"
+  default = "D:\\ISOs\\custom\\gold-rhel-8.6-x86_64-dvd.iso"
 }
 
 variable "iso_checksum" {
-  default = "md5:CHECKSUM"
+  default = "md5:9d344ccbd5cfe1d6982501b05cbaf52d"
 }
 
 variable "guest_additions_path" {
