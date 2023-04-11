@@ -23,7 +23,7 @@ variable "iso_url" {
 }
 
 variable "iso_checksum" {
-  default = "md5:9d344ccbd5cfe1d6982501b05cbaf52d"
+  default = "md5:CHECKSUM"
 }
 
 variable "guest_additions_path" {
