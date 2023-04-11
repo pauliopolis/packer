@@ -23,7 +23,7 @@ variable "iso_url" {
 }
 
 variable "iso_checksum" {
-  default = "md5:CHECKSUM"
+  default = "md5:9d344ccbd5cfe1d6982501b05cbaf52d"
 }
 
 variable "guest_additions_path" {
@@ -102,7 +102,9 @@ source "virtualbox-iso" "rhel8" {
     ["modifyvm", "{{ .Name }}", "--vram", "256"],
     ["modifyvm", "{{ .Name }}", "--graphicscontroller", "vmsvga"],
     ["modifyvm", "{{ .Name }}", "--nictype1", "virtio"],
-    ["modifyvm", "{{ .Name }}", "--description", "PACKER GOLD RHEL BUILD"]
+    ["modifyvm", "{{ .Name }}", "--description", "PACKER GOLD RHEL BUILD"],
+    ["modifyvm", "{{ .Name }}", "--recording", "on"],
+    ["modifyvm", "{{ .Name }}", "--recordingfile", "C:\\Users\\User\\Desktop\\packer\\gold-rhel8-screen0.webm"]
   ]
 }
 
