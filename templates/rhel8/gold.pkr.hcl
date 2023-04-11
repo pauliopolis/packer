@@ -23,7 +23,7 @@ variable "iso_url" {
 }
 
 variable "iso_checksum" {
-  default = "md5:a26b4ac743d5d654960306c41d7993d8"
+  default = "md5:CHECKSUM"
 }
 
 variable "guest_additions_path" {
@@ -108,7 +108,7 @@ source "virtualbox-iso" "rhel8" {
 
 build {
   sources = ["sources.virtualbox-iso.rhel8"]
-  
+
   provisioner "ansible-local" {
     playbook_file = "./ansible/main.yml"
     galaxy_file   = "./ansible/requirements.yml"
@@ -119,6 +119,7 @@ build {
 
   post-processor "vagrant" {
     keep_input_artifact = true
+    include             = ["info.json"]
     output              = "D:\\Virtual_Machines\\GOLD\\gold-virtualbox-rhel8.box"
   }
 }
