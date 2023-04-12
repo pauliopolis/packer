@@ -38,9 +38,13 @@ There are many builder plugins - this project will look only at virtualbox and v
 
 # Usage
 
-Running packer build will create a build folder containing both an OVF and a VMDK and also output a Vagrant BOX file.
 For convenience - added small noddy script to clean up the info.json and gold.pkr.hcl before and after builds
+
+
 ``$create-packer-iso <format|validate|build|force>``
+
+
+Running packer build will create a build folder containing both an OVF and a VMDK and also output a Vagrant BOX file.
 
 
 ![image](https://user-images.githubusercontent.com/14337141/228612802-e2f908f9-3216-4bc9-9cad-555624e019d2.png)
