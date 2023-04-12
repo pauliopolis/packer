@@ -1,0 +1,26 @@
+---
+
+  - name: Ansible Galaxy Posix Collection Install
+    shell: ansible-galaxy collection install ansible.posix --ignore-certs
+
+  - name: Mount ISO
+    ansible.posix.mount:
+      path: /mnt
+      src: /home/vagrant/VBoxGuestAdditions.iso
+      fstype: iso9660
+      opts: ro
+      state: mounted
+
+  - name: Install VBoxLinuxAdditions
+    shell: /mnt/VBoxLinuxAdditions.run no_setup || /bin/true
+
+  - name: Enable vboxadd.service
+    shell: systemctl enable vboxadd.service
+
+  - name: Enable vboxadd-service.service
+    shell: systemctl enable vboxadd-service.service
+
+  - name: Unmount ISO
+    ansible.posix.mount:
+      path: /mnt
+      state: unmounted 

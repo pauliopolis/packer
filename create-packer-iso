@@ -1,0 +1,63 @@
+#!/bin/bash
+
+PWD=$(basename `pwd`)
+if [ $PWD != "packer" ]
+then
+	echo "ERROR: run in packer parent dir"
+	exit
+fi
+
+clear
+
+if [ $# -ne 1 ]
+then
+	echo "USAGE: `basename $0` <validate|format|build|force>" ; echo
+	exit
+fi
+
+[ -d packer_cache ] && rm -rf packer_cache
+
+echo Preparing HCL
+./update-gold-md5
+echo
+
+if [[ $1 =~ (build|force) ]]
+then
+	echo Preparing INFO
+	read -p "Enter Author Name: " AUTHOR
+	sed -i 's/AUTHOR/'"$AUTHOR"'/g' ./info.json 
+fi
+
+case "$1" in
+
+   validate) echo Validating HCL
+      packer validate templates/rhel8/gold.pkr.hcl
+      echo
+      ;;
+   format) echo Formating HCL
+      packer fmt templates/rhel8/gold.pkr.hcl
+      echo
+      ;;
+   build) echo Building HCL
+      packer build templates/rhel8/gold.pkr.hcl
+      echo
+      echo Cleaning INFO
+      sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
+      echo
+      ;;
+   force) echo Force Building HCL
+      packer build -force temlates/rhel8/gold.pkr.hcl
+      echo
+      echo Cleaning INFO
+      sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
+      echo
+      ;;
+   *) echo No Valid Action Seen
+      echo
+      exit
+      ;;
+esac
+
+echo Cleaning HCL
+./revert-md5-placeholder
+echo

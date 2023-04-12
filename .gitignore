@@ -1,0 +1,6 @@
+packer_cache
+output-rhel8
+build
+*.box
+.README.md.swp
+gold-rhel8-screen0.webm

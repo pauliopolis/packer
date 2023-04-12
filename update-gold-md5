@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CUSTOMISO=/mnt/d/ISOs/custom/gold-rhel-8.6-x86_64-dvd.iso.md5
+
+CHECKSUM=$(cat $CUSTOMISO)
+
+sed -i 's/CHECKSUM/'$CHECKSUM'/g' templates/rhel8/gold.pkr.hcl  
+
