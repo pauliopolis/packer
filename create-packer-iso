@@ -39,14 +39,14 @@ case "$1" in
       echo
       ;;
    build) echo Building HCL
-      #packer build templates/rhel8/gold.pkr.hcl
+      packer build templates/rhel8/gold.pkr.hcl
       echo
       echo Cleaning INFO
       sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
       echo
       ;;
    force) echo Force Building HCL
-      #packer build -force temlates/rhel8/gold.pkr.hcl
+      packer build -force temlates/rhel8/gold.pkr.hcl
       echo
       echo Cleaning INFO
       sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
