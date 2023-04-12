@@ -23,4 +23,4 @@
   - name: Unmount ISO
     ansible.posix.mount:
       path: /mnt
-      state: unmounted 
+      state: absent 
