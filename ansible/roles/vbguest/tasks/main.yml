@@ -1,7 +1,8 @@
 ---
 
-
   - name: Ansible Galaxy Posix Collection Install (for local users)
+    become_user: vagrant
+    become: yes
     shell: ansible-galaxy collection install ansible.posix --ignore-certs
 
   - name: Mount ISO
