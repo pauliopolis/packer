@@ -49,7 +49,7 @@ case "$1" in
       packer build -force -color=true templates/rhel8/gold.pkr.hcl
       echo
       echo Cleaning INFO
-      sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
+      sed -i 's/"Author.*$/"Author": "AUTHOR",/g' info.json
       echo
       ;;
    *) echo No Valid Action Seen
