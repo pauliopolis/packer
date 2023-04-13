@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PACKER=/mnt/c/HashiCorp/Packer/bin/packer.exe
+
 PWD=$(basename `pwd`)
 if [ $PWD != "packer" ]
 then
@@ -17,47 +19,62 @@ fi
 
 [ -d packer_cache ] && rm -rf packer_cache
 
-echo Preparing HCL
-./update-gold-md5
-echo
-
-if [[ $1 =~ (build|force) ]]
+if [[ $1 =~ (validate|build|force) ]]
 then
 	echo Preparing INFO
 	read -p "Enter Author Name: " AUTHOR
 	sed -i 's/AUTHOR/'"$AUTHOR"'/g' ./info.json 
+	echo
+	echo Preparing HCL
+        ./update-gold-md5
+	echo
 fi
 
 case "$1" in
 
    validate) echo Validating HCL
-      packer validate templates/rhel8/gold.pkr.hcl
       echo
+      $PACKER validate templates/rhel8/gold.pkr.hcl
+      echo
+      echo Cleaning HCL
+      ./revert-md5-placeholder
+      echo
+      echo Cleaning INFO
+      sed -i 's/"Author.*$/"Author": "AUTHOR",/g' info.json
+      exit
       ;;
    format) echo Formating HCL
-      packer fmt templates/rhel8/gold.pkr.hcl
       echo
+      $PACKER fmt templates/rhel8/gold.pkr.hcl
+      echo
+      exit
       ;;
    build) echo Building HCL
-      packer build -color=true templates/rhel8/gold.pkr.hcl
+      echo
+      $PACKER build -color=true templates/rhel8/gold.pkr.hcl
+      echo
+      echo Cleaning HCL
+      ./revert-md5-placeholder
       echo
       echo Cleaning INFO
       sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
       echo
+      exit
       ;;
    force) echo Force Building HCL
-      packer build -force -color=true templates/rhel8/gold.pkr.hcl
+      echo
+      $PACKER build -force -color=true templates/rhel8/gold.pkr.hcl
+      echo
+      echo Cleaning HCL
+      ./revert-md5-placeholder
       echo
       echo Cleaning INFO
       sed -i 's/"Author.*$/"Author": "AUTHOR",/g' info.json
       echo
+      exit
       ;;
    *) echo No Valid Action Seen
       echo
       exit
       ;;
 esac
-
-echo Cleaning HCL
-./revert-md5-placeholder
-echo
