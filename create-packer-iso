@@ -57,7 +57,7 @@ case "$1" in
       ./revert-md5-placeholder
       echo
       echo Cleaning INFO
-      sed -i 's/"Author.*$/"Author":"AUTHOR",/g' info.json
+      sed -i 's/"Author.*$/"Author": "AUTHOR",/g' info.json
       echo
       exit
       ;;
