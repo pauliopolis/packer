@@ -63,6 +63,7 @@ case "$1" in
       ;;
    force) echo Force Building HCL
       echo
+      rm -rf /mnt/d/Virtual_Machines/rhel8/
       $PACKER build -force -color=true templates/rhel8/gold.pkr.hcl
       echo
       echo Cleaning HCL
