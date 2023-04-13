@@ -1,5 +1,4 @@
 #!/bin/bash
 
-
 sed -i 's/default = "md5:.*$/default = "md5:CHECKSUM"/g' templates/rhel8/gold.pkr.hcl 
 
