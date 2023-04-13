@@ -1,6 +1,7 @@
 ---
 
-  - name: Ansible Galaxy Posix Collection Install
+
+  - name: Ansible Galaxy Posix Collection Install (for local users)
     shell: ansible-galaxy collection install ansible.posix --ignore-certs
 
   - name: Mount ISO

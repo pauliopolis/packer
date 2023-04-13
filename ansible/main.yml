@@ -9,7 +9,7 @@
   gather_facts: true
 
   collections:
-    - ansible.posix 
+   - ansible.posix 
 
   roles:
     - vbguest
